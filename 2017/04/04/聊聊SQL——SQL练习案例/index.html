@@ -108,7 +108,7 @@
 <meta property="og:site_name" content="Telinx|Tech">
 <meta property="og:description" content="本文详细的分析了常用SQL查询案例，熟悉以下SQL，基本可以胜任大部分SQL工作。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-29T14:39:35.000Z">
+<meta property="og:updated_time" content="2017-09-29T14:57:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="聊聊SQL——SQL练习案例">
 <meta name="twitter:description" content="本文详细的分析了常用SQL查询案例，熟悉以下SQL，基本可以胜任大部分SQL工作。">
@@ -416,7 +416,23 @@
 <p>本文详细的分析了常用SQL查询案例，熟悉以下SQL，基本可以胜任大部分SQL工作。</p>
 </blockquote>
 <a id="more"></a>
-<p>Student(StudentId,Sname,Sage,Ssex) 学生表   StudentId：学号:Sname：学生姓名；Sage：学生年龄；Ssex：学生性别<br>Course(CourseId,Cname,TeacherId) 课程表      CourseId,课程编号；Cname：课程名字；TeacherId：教师编号<br>SC(StudentId,CourseId,score) 成绩表                StudentId：学号；CourseId,课程编号；score：成绩<br>Teacher(TeacherId,Tname) 教师表                     TeacherId：教师编号； Tname：教师名字<br>问题：</p>
+<p>Student(StudentId,Sname,Sage,Ssex) 学生表   </p>
+<ul>
+<li>StudentId：学号:Sname：学生姓名；Sage：学生年龄；Ssex：学生性别</li>
+</ul>
+<p>Course(CourseId,Cname,TeacherId) 课程表      </p>
+<ul>
+<li>CourseId,课程编号；Cname：课程名字；TeacherId：教师编号</li>
+</ul>
+<p>SC(StudentId,CourseId,score) 成绩表                </p>
+<ul>
+<li>StudentId：学号；CourseId,课程编号；score：成绩</li>
+</ul>
+<p>Teacher(TeacherId,Tname) 教师表                     </p>
+<ul>
+<li>TeacherId：教师编号； Tname：教师名字</li>
+</ul>
+<p>问题：</p>
 <ol>
 <li><p>查询“001”课程比“002”课程成绩高的所有学生的学号；</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> a.StudentId <span class="keyword">from</span> </div><div class="line">(<span class="keyword">select</span> StudentId,score <span class="keyword">from</span> SC <span class="keyword">where</span> CourseId=<span class="string">'001'</span>) a,</div><div class="line">(<span class="keyword">select</span> StudentId,scorefrom SC <span class="keyword">where</span> CourseId=<span class="string">'002'</span>) b</div><div class="line"><span class="keyword">where</span> a.score&gt;b.score <span class="keyword">and</span> a.StudentId=b.StudentId;</div></pre></td></tr></table></figure>
