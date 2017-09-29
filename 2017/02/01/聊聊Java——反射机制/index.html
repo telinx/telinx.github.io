@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|courier new:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java基础,反射," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="当我们在使用Idea（如Eclipse）时点击“.”时，Idea自动列出它的属性或方法，很是神奇，这到底是什么原理？其实这就是反射。反射，一种计算机处理方式，是程序可以访问、检测和修改它本身状态或行为的一种能力[来源百度百科]。这两句话如果不是从事计算机行业估计大部分是蒙圈中，从事计算机的不少也是蒙圈中。我的理解是：程序在运行时，需要动态的加载一些类，通过反射，我们可以在运行时获得程序或程序集中">
+<meta name="keywords" content="Java基础,反射">
+<meta property="og:type" content="article">
+<meta property="og:title" content="聊聊Java——反射机制">
+<meta property="og:url" content="http://yoursite.com/2017/02/01/聊聊Java——反射机制/index.html">
+<meta property="og:site_name" content="Telinx|Tech">
+<meta property="og:description" content="当我们在使用Idea（如Eclipse）时点击“.”时，Idea自动列出它的属性或方法，很是神奇，这到底是什么原理？其实这就是反射。反射，一种计算机处理方式，是程序可以访问、检测和修改它本身状态或行为的一种能力[来源百度百科]。这两句话如果不是从事计算机行业估计大部分是蒙圈中，从事计算机的不少也是蒙圈中。我的理解是：程序在运行时，需要动态的加载一些类，通过反射，我们可以在运行时获得程序或程序集中">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-12T11:22:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="聊聊Java——反射机制">
+<meta name="twitter:description" content="当我们在使用Idea（如Eclipse）时点击“.”时，Idea自动列出它的属性或方法，很是神奇，这到底是什么原理？其实这就是反射。反射，一种计算机处理方式，是程序可以访问、检测和修改它本身状态或行为的一种能力[来源百度百科]。这两句话如果不是从事计算机行业估计大部分是蒙圈中，从事计算机的不少也是蒙圈中。我的理解是：程序在运行时，需要动态的加载一些类，通过反射，我们可以在运行时获得程序或程序集中">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/01/聊聊Java——反射机制/"/>
+
+
+
+
+
+  <title>聊聊Java——反射机制 | Telinx|Tech</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Telinx|Tech</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">知识就是力量</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/01/聊聊Java——反射机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="telinx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Telinx|Tech">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">聊聊Java——反射机制</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-01T10:07:12+08:00">
+                2017-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Java基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>当我们在使用Idea（如Eclipse）时点击“.”时，Idea自动列出它的属性或方法，很是神奇，这到底是什么原理？其实这就是反射。<br>反射，一种计算机处理方式，是程序可以访问、检测和修改它本身状态或行为的一种能力[来源<a href="https://baike.baidu.com/item/反射/928391?fr=aladdin" target="_blank" rel="external">百度百科</a>]。这两句话如果不是从事计算机行业估计大部分是蒙圈中，从事计算机的不少也是蒙圈中。我的理解是：程序在运行时，需要动态的加载一些类，通过反射，我们可以在运行时获得程序或程序集中每一个类型的成员和成员的信息。说白了就是动态获取虚拟机JVM内存中类、实例的信息，并且对之操作。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="反射是什么"><a href="#反射是什么" class="headerlink" title="反射是什么"></a>反射是什么</h3><p>​    反射(Reflection)是Java 程序开发语言的特征之一，它允许运行中的 Java 程序获取自身的信息，并且可以操作类或对象的内部属性。<br>官方如此解释：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Reflection enables Java code to discover information about the fields, methods and constructors of loaded classes, and to use reflected fields, methods, and constructors to operate on their underlying counterparts, within security restrictions.</div><div class="line"><span class="function">The API accommodates applications that need access to either the <span class="keyword">public</span> members of a target <span class="title">object</span> <span class="params">(based on its runtime class)</span> or the members declared by a given class. It also allows programs to suppress <span class="keyword">default</span> reflective access control.</span></div></pre></td></tr></table></figure>
+<p>​    通过反射，我们可以在动态的获得程序或程序集中每一个类型的成员和成员的信息。</p>
+<p>​    反射的核心是JVM在运行时才动态加载类或调用方法/访问属性，它不需要事先（写代码的时候或编译期）知道运行对象是谁。</p>
+<h3 id="反射能干什么"><a href="#反射能干什么" class="headerlink" title="反射能干什么"></a>反射能干什么</h3><p>Java反射框架主要提供的功能：</p>
+<ol>
+<li>在运行时判断任意一个对象所属的类</li>
+<li>在运行时构造任意一个类的对象</li>
+<li>在运行时判断任意一个类所具有的成员变量和方法（通过反射甚至可以调用private方法）</li>
+<li>运行时调用任意一个对象的方法</li>
+</ol>
+<p><strong>运行时</strong>任意的对任何一个类的所有成员方法、成员变量进行判断和实例化，对任何一个对象的方法调用。</p>
+<p>说的那么牛叉，但到底可以用来干嘛呢？如下：</p>
+<ol>
+<li><p>反射机制获取类有三种方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//第一种方式：  </span></div><div class="line">Classc1 = Class.forName(<span class="string">"Table"</span>);  </div><div class="line"><span class="comment">//第二种方式：  </span></div><div class="line"><span class="comment">//java中每个类型都有class 属性.  </span></div><div class="line">Classc2 = Table.class;  </div><div class="line">   </div><div class="line"><span class="comment">//第三种方式：  </span></div><div class="line"><span class="comment">//java语言中任何一个java对象都有getClass 方法  </span></div><div class="line">Table t = <span class="keyword">new</span> Table();  </div><div class="line">Classc3 = t.getClass(); <span class="comment">//c3是运行时类 (t的运行时类是Table)</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>创建对象：获取类以后我们来创建它的对象，利用newInstance</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Class c =Class.forName(<span class="string">"Table"</span>);  </div><div class="line">  </div><div class="line"><span class="comment">//创建此Class 对象所表示的类的一个新实例  </span></div><div class="line">Object o = c.newInstance(); <span class="comment">//调用了Table的无参数构造方法.</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>获取属性：分为所有的属性和指定的属性</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//获取所有属性</span></div><div class="line">Class c = Class.forName(<span class="string">"java.lang.Integer"</span>);</div><div class="line">        <span class="comment">// 获取所有的属性?</span></div><div class="line">Field[] fs = c.getDeclaredFields();</div><div class="line"></div><div class="line"><span class="comment">// 定义可变长的字符串，用来存储属性</span></div><div class="line">StringBuffer sb = <span class="keyword">new</span> StringBuffer();</div><div class="line"><span class="comment">// 通过追加的方法，将每个属性拼接到此字符串中</span></div><div class="line"><span class="comment">// 最外边的public定义</span></div><div class="line">sb.append(Modifier.toString(c.getModifiers()) + <span class="string">" class "</span> + c.getSimpleName() + <span class="string">"&#123;\n"</span>);</div><div class="line"><span class="comment">// 里边的每一个属性</span></div><div class="line"><span class="keyword">for</span> (Field field : fs) &#123;</div><div class="line">    sb.append(<span class="string">"\t"</span>);<span class="comment">// 空格</span></div><div class="line">    sb.append(Modifier.toString(field.getModifiers()) + <span class="string">" "</span>);<span class="comment">//获得属性的修饰符，例如public</span></div><div class="line">    sb.append(field.getType().getSimpleName() + <span class="string">" "</span>);<span class="comment">// 属性的类型的名字</span></div><div class="line">    sb.append(field.getName() + <span class="string">";\n"</span>);<span class="comment">// 属性的名字+回车</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">sb.append(<span class="string">"&#125;"</span>);</div><div class="line">System.out.println(sb);</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//获取部分属性</span></div><div class="line">Class c = Class.forName(<span class="string">"User"</span>);  </div><div class="line"><span class="comment">//获取id属性  </span></div><div class="line">Field idF = c.getDeclaredField(<span class="string">"id"</span>);  </div><div class="line"><span class="comment">//实例化这个类赋给o  </span></div><div class="line">Object o = c.newInstance();  </div><div class="line"><span class="comment">//打破封装  </span></div><div class="line">idF.setAccessible(<span class="keyword">true</span>); <span class="comment">//使用反射机制可以打破封装性，导致了java对象的属性不安全。  </span></div><div class="line"><span class="comment">//给o对象的id属性赋值"110"  </span></div><div class="line">idF.set(o, <span class="string">"110"</span>); <span class="comment">//set  </span></div><div class="line"><span class="comment">//get  </span></div><div class="line">System.out.println(idF.get(o));</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取方法，和构造方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//方法关键字</span></div><div class="line">getDeclaredMethods()			<span class="comment">//获取所有的方法</span></div><div class="line"></div><div class="line">getReturnType()				<span class="comment">//获得方法的放回类型</span></div><div class="line"></div><div class="line">getParameterTypes()			<span class="comment">//获得方法的传入参数类型</span></div><div class="line"></div><div class="line">getDeclaredMethod(<span class="string">"方法名"</span>,参数类型.class,……)	<span class="comment">//获得特定的方法</span></div><div class="line"></div><div class="line">构造方法关键字</div><div class="line"></div><div class="line">getDeclaredConstructors()			<span class="comment">//获取所有的构造方法</span></div><div class="line"></div><div class="line">getDeclaredConstructor(参数类型.class,……)	<span class="comment">//获取特定的构造方法</span></div><div class="line"></div><div class="line"><span class="comment">//父类和父接口</span></div><div class="line"></div><div class="line">getSuperclass()				<span class="comment">//获取某类的父类</span></div><div class="line"></div><div class="line">getInterfaces()				<span class="comment">//获取某类实现的接口</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>应用实例：</p>
+<ol>
+<li><p>Junit</p>
+<p>JUnit通过反射来遍历包含 @Test 注解的方法，并在运行单元测试时调用它们</p>
+</li>
+<li><p>Spring框架</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;bean id=<span class="string">"fox"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"com.telinx.Fox"</span>&gt;</div><div class="line">    &lt;property name=<span class="string">"name"</span> value=<span class="string">"Alex"</span> /&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure>
+<p>当Spring容器处理 bean 元素时，会使用Class.forName(“com.telinx.Fox”)来初始化这个类，并再次使用反射获取 property 元素对应的setter方法，为对象的属性赋值。</p>
+</li>
+<li><p>servlet</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;servlet&gt;</div><div class="line">    &lt;servlet-name&gt;foxServlet&lt;/servlet-name&gt;</div><div class="line">    &lt;servlet-<span class="class"><span class="keyword">class</span>&gt;<span class="title">com</span>.<span class="title">telinx</span>.<span class="title">Fox</span>&lt;/<span class="title">servlet</span>-<span class="title">class</span>&gt;</span></div><div class="line"><span class="class">&lt;<span class="title">servlet</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>当Tomcat启动，为应用分配context，容器使用反射创建对象。</p>
+</li>
+</ol>
+<h3 id="反射的预备知识"><a href="#反射的预备知识" class="headerlink" title="反射的预备知识"></a>反射的预备知识</h3><p>请查看 <a href="https://telinx.github.io/2017/01/25/聊聊Java——java.lang.reflect包/" target="_blank" rel="external">聊聊Java——java.lang.reflect包</a>熟悉在java.lang.reflect包中有三个重要的类：</p>
+<ul>
+<li>Field：描述类的域</li>
+<li>Method：描述类的方法</li>
+<li>Constructor：描述类的构造器</li>
+</ul>
+<p>对于public域（包括超类成员）：</p>
+<ul>
+<li>getFields</li>
+<li>getMethods</li>
+<li>getConstructors</li>
+</ul>
+<p>对于其它域（包括私有和受保护的成员，不包括超类成员）：</p>
+<ul>
+<li>gettDeclaredFields</li>
+<li>gettDeclaredMethods</li>
+<li>gettDeclaredConstructors</li>
+</ul>
+<h3 id="如何使用反射"><a href="#如何使用反射" class="headerlink" title="如何使用反射"></a>如何使用反射</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.telinx;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Fox</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Fox</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Fox</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>加载类</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 加载类的3种方法</span></div><div class="line">Class clazz = Class.forName(<span class="string">"com.telinx.Fox"</span>);</div><div class="line">Class clazz1 = <span class="keyword">new</span> Fox().getClass();</div><div class="line">Class class2 = Fox.class;</div></pre></td></tr></table></figure>
+<p><strong>获取类构造函数，并实例化类</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*****无参*****/</span></div><div class="line">Class clazz = Class.forName(<span class="string">"com.telinx.Fox"</span>);</div><div class="line">Constructor c = clazz.getConstructor(<span class="keyword">null</span>);</div><div class="line">Fox fox = (Fox) c.newInstance(<span class="keyword">null</span>);</div><div class="line"></div><div class="line"><span class="comment">/*****含参私有构造函数*****/</span></div><div class="line">Class clazz = Class.forName(<span class="string">"com.telinx.Fox"</span>);</div><div class="line">Constructor c = clazz.getDeclaredConstructor(<span class="keyword">new</span> Class[] &#123; String.class &#125;);</div><div class="line"><span class="comment">// 由于构造函数是 private 的，所以需要屏蔽Java语言的访问检查</span></div><div class="line">c.setAccessible(<span class="keyword">true</span>);</div><div class="line">Fox fox = (Fox) c.newInstance(<span class="keyword">new</span> Object[] &#123; <span class="string">"Alex"</span> &#125;);</div></pre></td></tr></table></figure>
+<p><strong>获取并调用类的无参方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Class clazz = Class.forName(<span class="string">"com.telinx.Fox"</span>);</div><div class="line">Constructor c = clazz.getConstructor(<span class="keyword">null</span>);</div><div class="line">Fox fox = (Fox) c.newInstance(<span class="keyword">null</span>);</div><div class="line">Method method = clazz.getMethod(<span class="string">"getName"</span>, <span class="keyword">null</span>);</div><div class="line">method.invoke(p, <span class="keyword">null</span>);</div></pre></td></tr></table></figure>
+<p><strong>获取类的字段</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Class clazz = Class.forName(<span class="string">"com.telinx.Fox"</span>);</div><div class="line">Constructor c = clazz.getDeclaredConstructor(<span class="keyword">new</span> Class[] &#123; String.class &#125;);</div><div class="line">c.setAccessible(<span class="keyword">true</span>);<span class="comment">//构造函数是private，需获取控制权限</span></div><div class="line">Fox fox = (Fox) c.newInstance(<span class="keyword">new</span> Object[] &#123; <span class="string">"Alex"</span> &#125;);</div><div class="line">Field f = clazz.getField(<span class="string">"name"</span>);</div><div class="line">Object value = f.get(fox);</div><div class="line">Class type = f.getType();</div><div class="line">System.out.println(type);</div><div class="line"><span class="keyword">if</span> (type.equals(String.class)) &#123;</div><div class="line">	System.out.println((String) value);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>注解经常与反射结合应用</strong>，具体请查看<a href="https://telinx.github.io/2017/01/20/聊聊Java——注解/" target="_blank" rel="external">聊聊Java——注解</a></p>
+<p><strong>参考：</strong></p>
+<p><a href="http://www.jianshu.com/p/53eb4e16d00e" target="_blank" rel="external">http://www.jianshu.com/p/53eb4e16d00e</a></p>
+<p><a href="http://blog.csdn.net/liujiahan629629/article/details/18013523" target="_blank" rel="external">http://blog.csdn.net/liujiahan629629/article/details/18013523</a></p>
+<p><a href="http://www.importnew.com/9078.html" target="_blank" rel="external">http://www.importnew.com/9078.html</a></p>
+<p><a href="http://www.sczyh30.com/posts/Java/java-reflection-1/" target="_blank" rel="external">http://www.sczyh30.com/posts/Java/java-reflection-1/</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java基础/" rel="tag"># Java基础</a>
+          
+            <a href="/tags/反射/" rel="tag"># 反射</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/25/聊聊Java——java.lang.reflect包/" rel="next" title="聊聊Java——java.lang.reflect包">
+                <i class="fa fa-chevron-left"></i> 聊聊Java——java.lang.reflect包
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/05/聊聊Java——代理机制/" rel="prev" title="聊聊Java——代理机制">
+                聊聊Java——代理机制 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="telinx" />
+          <p class="site-author-name" itemprop="name">telinx</p>
+           
+              <p class="site-description motion-element" itemprop="description">Focus On It</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#反射是什么"><span class="nav-number">1.</span> <span class="nav-text">反射是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反射能干什么"><span class="nav-number">2.</span> <span class="nav-text">反射能干什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反射的预备知识"><span class="nav-number">3.</span> <span class="nav-text">反射的预备知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何使用反射"><span class="nav-number">4.</span> <span class="nav-text">如何使用反射</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">telinx</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+
+
+</body>
+</html>

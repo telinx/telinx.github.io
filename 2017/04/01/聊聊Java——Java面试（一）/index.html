@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|courier new:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="面试," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Java基础、多线程面试题整理">
+<meta name="keywords" content="面试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="聊聊Java——java面试（一）">
+<meta property="og:url" content="http://yoursite.com/2017/04/01/聊聊Java——Java面试（一）/index.html">
+<meta property="og:site_name" content="Telinx|Tech">
+<meta property="og:description" content="Java基础、多线程面试题整理">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-29T14:30:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="聊聊Java——java面试（一）">
+<meta name="twitter:description" content="Java基础、多线程面试题整理">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/04/01/聊聊Java——Java面试（一）/"/>
+
+
+
+
+
+  <title>聊聊Java——java面试（一） | Telinx|Tech</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Telinx|Tech</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">知识就是力量</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/01/聊聊Java——Java面试（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="telinx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Telinx|Tech">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">聊聊Java——java面试（一）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-01T01:54:08+08:00">
+                2017-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/面试/" itemprop="url" rel="index">
+                    <span itemprop="name">面试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Java基础、多线程面试题整理</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h3><ol>
+<li><p>“==”和equals方法究竟有什么区别？</p>
+<p>==操作符专门用来比较两个变量的值是否相等，也就是用于比较变量所对应的内存中所存储的数值是否相同</p>
+<p>equals方法是用于比较两个独立对象的内容是否相同</p>
+<p>​</p>
+<p>==操作比较的是两个变量的值是否相等，对于引用型变量表示的是两个变量在堆中存储的地址是否相同，即栈中的内容是否相同。a = “12”; b = “12”;a == b——》true</p>
+<p>equals操作表示的两个变量是否是对同一个对象的引用，即堆中的内容是否相同。</p>
+<p>​</p>
+<p> == 比较是否同一个引用</p>
+<p> equal两个对象内容是否相同</p>
+<p>阅读以下源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//Object</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> (<span class="keyword">this</span> == obj);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//String</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object anObject)</span> </span>&#123;</div><div class="line">	<span class="keyword">if</span> (<span class="keyword">this</span> == anObject) &#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> (anObject <span class="keyword">instanceof</span> String) &#123;</div><div class="line">		String anotherString = (String) anObject;</div><div class="line">		<span class="keyword">int</span> n = value.length;</div><div class="line">		<span class="keyword">if</span> (n == anotherString.value.length) &#123;</div><div class="line">			<span class="keyword">char</span> v1[] = value;</div><div class="line">			<span class="keyword">char</span> v2[] = anotherString.value;</div><div class="line">			<span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">			<span class="keyword">while</span> (n-- != <span class="number">0</span>) &#123;</div><div class="line">				<span class="keyword">if</span> (v1[i] != v2[i])</div><div class="line">					<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">				i++;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//AbstractList</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</div><div class="line">	<span class="keyword">if</span> (obj == <span class="keyword">this</span>) &#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span> (obj <span class="keyword">instanceof</span> List == <span class="keyword">false</span>) &#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	List other = (List) obj;</div><div class="line">	<span class="keyword">if</span> (other.size() != size()) &#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">	&#125;</div><div class="line">	ListIterator it1 = listIterator();</div><div class="line">	ListIterator it2 = other.listIterator();</div><div class="line">	<span class="keyword">while</span> (it1.hasNext() &amp;&amp; it2.hasNext()) &#123;</div><div class="line">		Object o1 = it1.next();</div><div class="line">		Object o2 = it2.next();</div><div class="line">		<span class="keyword">if</span> (!(o1 == <span class="keyword">null</span> ? o2 == <span class="keyword">null</span> : o1.equals(o2)))</div><div class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> !(it1.hasNext() || it2.hasNext());</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>​</p>
+<p>​</p>
+</li>
+<li><p>静态变量和实例变量的区别？</p>
+<p>在语法定义上的区别：静态变量前要加static关键字，而实例变量前则不加。</p>
+<p>在程序运行时的区别：</p>
+<p>​    实例变量属于某个对象的属性，必须创建了实例对象，其中的实例变量才会被分配空间，才能使用这个实例变量。</p>
+<p>​     静态变量不属于某个实例对象，而是属于类，所以也称为类变量，只要程序加载了类的字节码，不用创建任何实例对象，静态变量就会被分配空间，静态变量就可以被使用了</p>
+</li>
+<li><p>Integer与int的区别？</p>
+<p>int是java提供的8种原始数据类型之一。</p>
+<p>Java为每个原始类型提供了封装类，Integer是java为int提供的封装类。</p>
+<p>int的默认值为0，而Integer的默认值为null</p>
+</li>
+<li><p>请说出作用域public，private，protected，以及不写时的区别</p>
+<p>| 作用域       | 当前类  | 同包   | 子类   | 不同包  |<br>| ——— | —- | —- | —- | —- |<br>| public    | 1    | 1    | 1    | 1    |<br>| protected | 1    | 1    | 1    |      |<br>| friendly  | 1    | 1    |      |      |<br>| private   | 1    |      |      |      |</p>
+</li>
+<li><p>Overload和Override的区别</p>
+<p>Override是重写：方法名称、参数个数，类型，顺序，返回值类型都是必须和父类方法一致的。它的关系是父子关系</p>
+<p>Overload是重载:方法名称不变，其余的都是可以变更的。它的关系是同一个类，同一个方法名，不同的方法参数或返回值。</p>
+</li>
+<li><p>什么是面向对象的三大特性，继承的优缺点</p>
+<p>封装是保证软件部件具有优良的模块性的基础，封装的目标就是要实现软件部件的“高内聚、低耦合”，防止程序相互依赖性而带来的变动影响。在面向对象的编程语言中，对象是封装的最基本单位，面向对象的封装比传统语言的封装更为清晰、更为有力。</p>
+<p>多态是指程序中定义的引用变量所指向的具体类型和通过该引用变量发出的方法调用在编程时并不确定，而是在程序运行期间才确定，即一个引用变量倒底会指向哪个类的实例对象，该引用变量发出的方法调用到底是哪个类中实现的方法，必须在由程序运行期间才能决定。</p>
+<p> 在定义和实现一个类的时候，可以在一个已经存在的类的基础之上来进行，把这个已经存在的类所定义的内容作为自己的内容，并可以加入若干新的内容，或修改原来的方法使之更适合特殊的需要，这就是继承。</p>
+<p>继承是子类自动共享父类数据和方法的机制，这是类之间的一种关系，提高了软件的可重用性和可扩展性。</p>
+<p>​    优点：</p>
+<p>​        1.可以使用父类的所有非私有方法；而且单继承可由接口来弥补。</p>
+<p>​        2.可以继承父类中定义的成员方法以及成员变量，使得子类可以减少代码的书写。还可以重写父类的方法以增加子类的功能。</p>
+<p>​    缺点：</p>
+<p>​        1.耦合性太大</p>
+<p>​        2.就是破坏了类的封装性，其实继承一般多用于抽象方法的继承和接口的实现</p>
+</li>
+<li><p>abstract class和interface有什么区别?</p>
+<ol>
+<li>抽象类可以有构造方法，接口中不能有构造方法。</li>
+<li>抽象类中可以有普通成员变量，接口中没有普通成员变量</li>
+<li>抽象类中可以包含非抽象的普通方法，接口中的所有方法必须都是抽象的，不能有非抽象的普通方法。</li>
+<li>抽象类中的抽象方法的访问类型可以是public，protected和（默认类型,虽然eclipse下不报错，但应该也不行），但接口中的抽象方法只能是public类型的，并且默认即为public abstract类型。</li>
+<li>抽象类中可以包含静态方法，接口中不能包含静态方法</li>
+<li>抽象类和接口中都可以包含静态成员变量，抽象类中的静态成员变量的访问类型可以任意，但接口中定义的变量只能是public static final类     型，并且默认即为public static final类型。</li>
+<li>一个类可以实现多个接口，但只能继承一个抽象类。</li>
+</ol>
+</li>
+<li><p>内部类可以引用它的包含类的成员吗？有没有什么限制？</p>
+<p>完全可以。如果不是静态内部类，那没有什么限制！如果你把静态嵌套类当作内部类的一种特例，那在这种情况下不可以访问外部类的普通成员变量，而只能访问外部类中的静态成员</p>
+</li>
+<li><p>Anonymous Inner Class (匿名内部类)是否可以extends(继承)其它类，是否可以implements(实现)interface(接口)?</p>
+<p>可以继承其他类或实现其他接口。不仅是可以，而是必须!</p>
+</li>
+<li><p>String和StringBuffer的区别,StringBuilder</p>
+<ol>
+<li>String属于immutable类，一旦发生改变只会新建对象，线程安全</li>
+<li>StringBuffer类提供的字符串进行修改，长度可变，线程安全</li>
+<li>StringBuilder类提供的字符串进行修改, 非同步，线程不安全</li>
+</ol>
+</li>
+<li><p>final, finally, finalize的区别？</p>
+<ol>
+<li>final 用于声明属性，方法和类，分别表示属性不可变，方法不可覆盖，类不可继承。内部类要访问局部变量，局部变量必须定义成final类型，例如，一段代码……</li>
+<li>finally是异常处理语句结构的一部分，表示总是执行。</li>
+<li>finalize是Object类的一个方法，在垃圾收集器执行的时候会调用被回收对象的此方法，可以覆盖此方法提供垃圾收集时的其他资源回收，例如关闭文件等。JVM不保证此方法总被调用</li>
+</ol>
+</li>
+<li><p>error和exception有什么区别?</p>
+<ol>
+<li>error 表示恢复不是不可能但很困难的情况下的一种严重问题。比如说内存溢出。不可能指望程序能处理这样的情况。 </li>
+<li>exception表示一种设计或实现问题。也就是说，它表示如果程序运行正常，从不会发生的情况。</li>
+</ol>
+</li>
+<li><p>Java中的异常处理机制的简单原理和应用</p>
+<p>请查询博客</p>
+</li>
+<li><p>请写出你最常见到的5个runtime exception</p>
+<p>NullPointerException、ArrayIndexOutOfBoundsException、ClassCastException,ClassNotFountException, SQLException</p>
+</li>
+<li><p>JAVA语言如何进行异常处理，关键字：throws,throw,try,catch,finally分别代表什么意义？在try块中可以抛出异常吗？</p>
+<ul>
+<li>throws捕获并向外抛出异常    </li>
+<li>throw抛出异常</li>
+<li>try catch是内部捕获异常并做自定义处理</li>
+<li>finally是无论是否有异常都会被处理的语句，除非在finally前存在被执行的System.exit(int i)时除外</li>
+</ul>
+</li>
+<li><p>sleep()和 wait()有什么区别?</p>
+<ul>
+<li>sleep是让线程指定休眠时间，然后继续工作，sleep方法调用之后，并没有释放锁。使得线程仍然可以同步控制。sleep不会让出系统资源</li>
+<li>wait则是等待，直到有线程通知notify（）唤醒他才会重新工作，释放锁</li>
+</ul>
+</li>
+<li><p>同步和异步有何异同，在什么情况下分别使用他们？举例说明。</p>
+<ul>
+<li>多个线程同时取共同资源操作，一个是互相抢着用，然后彼此操作完放回，而同步是一个个线程排队。</li>
+</ul>
+</li>
+<li><p>多线程有几种实现方法?同步有几种实现方法? </p>
+<ul>
+<li>多线程有两种实现方法，分别是继承Thread类与实现Runnable接口，还有Callable</li>
+<li>同步的实现方面有两种，分别是synchronized,wait与notify，ReentrantLock</li>
+</ul>
+</li>
+<li><p>简述synchronized和java.util.concurrent.locks.Lock的异同？</p>
+<ul>
+<li>主要相同点：Lock能完成synchronized所实现的所有功能</li>
+<li>主要不同点：Lock有比synchronized更精确的线程语义和更好的性能。synchronized会自动释放锁，而Lock一定要求程序员手工释放，并且必须在finally从句中释放。Lock还有更强大的功能，例如，它的tryLock方法可以非阻塞方式去拿锁。</li>
+</ul>
+</li>
+<li><p>ArrayList和Vector的区别<br>都实现list,同步性，数据的增长，性能，不一样</p>
+</li>
+<li><p>HashMap和Hashtable的区别</p>
+<ul>
+<li>历史原因:Hashtable是基于陈旧的Dictionary类的，HashMap是Java 1.2引进的Map接口的一个实现 </li>
+<li>同步性:Hashtable是线程安全的，也就是说是同步的，而HashMap是线程序不安全的，不是同步的值：只有HashMap可以让你将null作为一个表的条目的key或value</li>
+</ul>
+</li>
+<li><p>List和 Map区别?</p>
+<ul>
+<li>一个是存储单列数据的集合，另一个是存储键和值这样的双列数据的集合，List中存储的数据是有顺序，并且允许重复；Map中存储的数据是没有顺序的，其键是不能重复的，它的值是可以有重复的。</li>
+<li>一个序列存储，一个键值对存储</li>
+</ul>
+</li>
+<li><p>List, Set, Map是否继承自Collection接口?<br>List，Set是，Map不是</p>
+</li>
+<li><p>ArrayList,Vector, LinkedList的存储性能和特性</p>
+<ul>
+<li>ArrayList和Vector都是使用数组方式存储数据，此数组元素数大于实际存储的数据以便增加和插入元素，它们都允许直接按序号索引元素，但是插入元素要涉及数组元素移动等内存操作，所以索引数据快而插入数据慢</li>
+<li>Vector由于使用了synchronized方法（线程安全），通常性能上较ArrayList差</li>
+<li>LinkedList使用双向链表实现存储，按序号索引数据需要进行前向或后向遍历，但是插入数据时只需要记录本项的前后项即可，所以插入速度较快</li>
+</ul>
+</li>
+<li><p>HashMap和HashSet的区别</p>
+<ul>
+<li>HashMap实现Map接口 </li>
+<li>HashSet实现Set接口</li>
+<li>HashMap存键值对，HashSet仅仅存储对象</li>
+<li>HashMap是put, HashSet是add,且不可重合</li>
+</ul>
+</li>
+<li><p>Collection和 Collections的区别。</p>
+<ul>
+<li>Collection是集合类的上级接口，继承与他的接口主要有Set和List.</li>
+<li>Collections是针对集合类的一个帮助类，他提供一系列静态方法实现对各种集合的搜索、排序、线程安全化等操作。</li>
+</ul>
+</li>
+<li><p>字节流与字符流的区别<br>字符流是字节流的包装，字符流则是直接接受字符串，字节是010101</p>
+</li>
+<li><p>什么是java序列化，如何实现java序列化？或者请解释Serializable接口的作用。<br>序列化就是一种用来处理对象流的机制，所谓对象流也就是将对象的内容进行流化。可以对流化后的对象进行读写操作，也可将流化后的对象传输于网络之间。序列化是为了解决在对对象流进行读写操作时所引发的问题。<br>序列化的实现：将需要被序列化的类实现Serializable接口</p>
+<p>serialization 允许你将实现了Serializable接口的对象转换为字节序列，这些字节序列可以被完全存储以备以后重新生成原来的对象。</p>
+<p>隐患:<br>1.实现了序列化后，一旦发布，讲削弱改变类实现的灵活性。<br>2.增加了bug和安全漏洞的的可能性<br>3.当你的新版本发布时增加了相关的测试上的问题</p>
+</li>
+<li><p>hashmap为啥是线程不安全的?<br>当多个线程同时检测到总数量超过门限值的时候就会同时调用resize操作，各自生成新的数组并rehash后赋给该map底层的数组table，结果最终只有最后一个线程生成的新数组被赋给table变量，其他线程的均会丢失。而且当某些线程已经完成赋值而其他线程刚开始的时候，就会用已经被赋值的table作为原始数组，这样也会有问题。 </p>
+</li>
+<li><p>hashmap里边哪个方法导致不安全。<br>resize()方法</p>
+</li>
+<li><p>java中hashmap的内部数据结构，<br>HashMap主要是用数组来存储数据的，我们都知道它会对key进行哈希运算，哈系运算会有重复的哈希值，对于哈希值的冲突，HashMap采用链表来解决的。会对key进行hash运算，value用数组来保存<br>在HashMap里有这样的一句属性声明：</p>
+<ul>
+<li>不要在并发场景中使用HashMap</li>
+<li>如果数据大小是固定的，那么最好给HashMap设定一个合理的容量值</li>
+</ul>
+</li>
+<li><p>equals和hashcode方法，<br>对象之间比较，hash地址比较<br>equals()相等的两个对象，hashcode()一定相等，equals()不相等的两个对象，却并不能证明他们的hashcode()不相等。换句话说，equals()方法不相等的两个对象，hashCode()有可能相等。</p>
+</li>
+<li><p>HashMap和hashTable 及ConcurrentHashMap的区别</p>
+<ul>
+<li>hashMap可以接受null，不同步，速度快</li>
+<li>hashtable不可以接受null，同步，速度慢，数据量大的时候虽然安全，但是性能越来越差</li>
+<li>concurrentHashMap 没有以上缺点.因为维护多个table</li>
+</ul>
+</li>
+<li><p>CGLIB 和 JDK生成动态代理类的区别<br>JDK动态代理只能对实现了接口的类生成代理，而不能针对类<br>CGLIB是针对类实现代理，主要是对指定的类生成一个子类，覆盖其中的方法<br>因为是继承，所以该类或方法最好不要声明成final</p>
+</li>
+<li><p>HashMap和hashTable 及ConcurrentHashMap的区别<br>hashMap可以接受null，不同步，速度快<br>hashtable不可以接受null，同步，速度慢，数据量大的时候虽然安全，但是性能越来越差<br>concurrentHashMap 没有以上缺点.因为维护多个table</p>
+</li>
+<li><p>java.io.Serializable的用法？以及有哪些安全问题？</p>
+<ul>
+<li>实现了序列化后，一旦发布，讲削弱改变类实现的灵活性。   </li>
+<li>增加了bug和安全漏洞的的可能性   </li>
+<li>当你的新版本发布时增加了相关的测试上的问题。 </li>
+</ul>
+</li>
+<li><p>java中hashmap的内部数据结构，<br>HashMap主要是用数组来存储数据的，我们都知道它会对key进行哈希运算，哈系运算会有重复的哈希值，对于哈希值的冲突，HashMap采用链表来解决的。会对key进行hash运算，value用数组来保存<br>在HashMap里有这样的一句属性声明：</p>
+<ul>
+<li>不要在并发场景中使用HashMap</li>
+<li>如果数据大小是固定的，那么最好给HashMap设定一个合理的容量值</li>
+</ul>
+</li>
+<li><p>什么时候该使用overload，什么时候使用override？<br>重载和覆盖在Java里实现的都是同一个功能，但overload的输入变量不同，override则完全相同。要覆盖则override,要输入不同的变量则overload</p>
+</li>
+<li><p>java动态绑定：程序会在运行的时候自动选择调用哪儿个方法。<br><a href="http://www.cnblogs.com/ericdream/archive/2012/01/07/2315697.html" target="_blank" rel="external">http://www.cnblogs.com/ericdream/archive/2012/01/07/2315697.html</a><br>静态绑定：<br>在程序执行前方法已经被绑定，此时由编译器或其它连接程序实现。java当中的方法只有final，static，private和构造方法是前期绑定<br>后期绑定：<br>在运行时根据具体对象的类型进行绑定。<br>动态绑定满足三个条件：</p>
+<ul>
+<li>需要有继承的存在</li>
+<li>要有方法的重写</li>
+<li>父类引用指向子类对象</li>
+</ul>
+</li>
+<li><p>jdk1.7的特性 </p>
+<p>java史上最大版本的一次更新：</p>
+<ul>
+<li>Modularization 模块化– JSR 294 或者 Project Jigsaw</li>
+<li>JVM 对动态语言的支持：指程序在运行时可以改变其结构：新的函数可以被引进，已有的函数可以被删除等在结构上的变化</li>
+<li>更多新的 I/O APIs 即将完成，包括真正的异步I/O 和最终的真实的文件系统 file system API – JSR 203<a href="http://developer.51cto.com/art/200907/139414.htm" target="_blank" rel="external">http://developer.51cto.com/art/200907/139414.htm</a></li>
+<li>对XML本地语言支持. (可能的probable)</li>
+<li>Safe rethrow – 允许catch捕获语句让编译器更加聪明的知道基于什么情况下重新throw什么内容。</li>
+<li>Null dereference expressions – Null 和 ‘?’ syntax 比较，语法类似 Groovy… 让开发者避免过多的空值验证。</li>
+<li>更好的类型推断 Better type inference</li>
+<li>多重捕获Multi-catch</li>
+<li>JSR 296 – Swing 应用框架 application framework – 这方面需要更简单和简洁</li>
+</ul>
+</li>
+<li><p>jdk1.8特性</p>
+<ul>
+<li>函数式接口</li>
+<li>Lambda表达式</li>
+<li>借口的增强</li>
+<li>集合的流式操作</li>
+<li>等等</li>
+</ul>
+</li>
+<li><p>java.lang.Object类的几个方法</p>
+<ul>
+<li>protected  Object clone() 创建并返回此对象的一个副本 </li>
+<li>boolean equals(Object obj) 指示某个其他对象是否与此对象“相等” </li>
+<li>protected  void finalize() 当垃圾回收器确定不存在对该对象的更多引用时，由对象的垃圾回收器调用此方法。</li>
+<li>int hashCode() 返回该对象的哈希码值。</li>
+<li>String toString() 返回该对象的字符串表示</li>
+</ul>
+</li>
+<li><p>Java的排序策略</p>
+<ul>
+<li>冒泡法排序：那么就依次相邻两个数比较大小，然后把大（小）的数放在后面，依次类推。冒泡排序时间复杂度O(n2) </li>
+<li>直接选择法排序：从当前数中选出一个最大或者最小的值排在最前面， </li>
+<li>反转排序:反转数组 </li>
+<li>插入排序：依次遍历数组，假设前面已经有一部分排过序的   </li>
+<li>快速排序             </li>
+<li>堆排序</li>
+</ul>
+</li>
+<li><p>NIO AIO BIO</p>
+<p>由上描述基本可以总结一句简短的话，同步和异步是目的，阻塞和非阻塞是实现方式。<br>同步阻塞IO（JAVA BIO）：<br>同步并阻塞，服务器实现模式为一个连接一个线程，即客户端有连接请求时服务器端就需要启动一个线程进行处理，如果这个连接不做任何事情会造成不必要的线程开销，当然可以通过线程池机制改善。 </p>
+<p>同步非阻塞IO(Java NIO) ： 同步非阻塞，服务器实现模式为一个请求一个线程，即客户端发送的连接请求都会注册到多路复用器上，多路复用器轮询到连接有I/O请求时才启动一个线程进行处理。用户进程也需要时不时的询问IO操作是否就绪，这就要求用户进程不停的去询问。</p>
+<p>异步阻塞IO（Java NIO）：<br>此种方式下是指应用发起一个IO操作以后，不等待内核IO操作的完成，等内核完成IO操作以后会通知应用程序，这其实就是同步和异步最关键的区别，同步必须等待或者主动的去询问IO是否完成，那么为什么说是阻塞的呢？因为此时是通过select系统调用来完成的，而select函数本身的实现方式是阻塞的，而采用select函数有个好处就是它可以同时监听多个文件句柄（如果从UNP的角度看，select属于同步操作。因为select之后，进程还需要读写数据），从而提高系统的并发性！  </p>
+<p>（Java AIO(NIO.2)）异步非阻塞IO:<br>在此种模式下，用户进程只需要发起一个IO操作然后立即返回，等IO操作真正的完成以后，应用程序会得到IO操作完成的通知，此时用户进程只需要对数据进行处理就好了，不需要进行实际的IO读写操作，因为真正的IO读取或者写入操作已经由内核完成了</p>
+</li>
+<li><p>​</p>
+</li>
+</ol>
+<h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3><ol>
+<li><p>immutable和mutable对象(java)<br>如何在Java中写出Immutable的类？<br>要写出这样的类，需要遵循以下几个原则：</p>
+<ul>
+<li>immutable对象的状态在创建之后就不能发生改变，任何对它的改变都应该产生一个新的对象。</li>
+<li>Immutable类的所有的属性都应该是final的。</li>
+<li>对象必须被正确的创建，比如：对象引用在对象创建过程中不能泄露(leak)。</li>
+<li>对象应该是final的，以此来限制子类继承父类，以避免子类改变了父类的immutable特性。</li>
+<li>如果类中包含mutable类对象，那么返回给客户端的时候，返回该对象的一个拷贝，而不是该对象本身（该条可以归为第一条中的一个特例）</li>
+</ul>
+<p>使用Immutable类的好处：</p>
+<ul>
+<li>Immutable对象是线程安全的，可以不用被synchronize就在并发环境中共享</li>
+<li>Immutable对象简化了程序开发，因为它无需使用额外的锁机制就可以在线程间共享</li>
+<li>Immutable对象提高了程序的性能，因为它减少了synchroinzed的使用</li>
+<li>Immutable对象是可以被重复使用的，你可以将它们缓存起来重复使用，就像字符串字面量和整型数字一样。你可以使用静态工厂方法来提供类似于valueOf（）这样的方法，它可以从缓存中返回一个已经存在的Immutable对象，而不是重新创建一个。 </li>
+</ul>
+<p>immutable也有一个<strong>缺点</strong>就是会制造大量垃圾，由于他们不能被重用而且对于它们的使用就是”用“然后”扔“，字符串就是一个典型的例子，它会创造很多的垃圾，给垃圾收集带来很大的麻烦。当然这只是个极端的例子，合理的使用immutable对象会创造很大的价值。</p>
+</li>
+<li><p>什么是线程安全和非线程安全。<br>线程安全就是说多线程访问同一代码，不会产生不确定的结果</p>
+</li>
+<li><p>线程有几个状态。<br>新建状态、就绪状态、运行状态、阻塞状态及死亡状态。</p>
+<ul>
+<li><p>新建状态(New)： </p>
+<p>当用new操作符创建一个线程时， 例如new Thread(r)，线程还没有开始运行，此时线程处在新建状态。 当一个线程             处于新生状态时，程序还没有开始运行线程中的代码</p>
+</li>
+<li><p>就绪状态(Runnable)</p>
+<p>一个新创建的线程并不自动开始运行，要执行线程，必须调用线程的start()方法。当线程对象调用start()方法即启动了线程，start()方法创建线程运行的系统资源，并调度线程运行run()方法。当start()方法返回后，线程就处于就绪状态。</p>
+<p>处于就绪状态的线程并不一定立即运行run()方法，线程还必须同其他线程竞争CPU时间，只有获得CPU时间才可以运    行线程。因为在单CPU的计算机系统中，不可能同时运行多个线程，一个时刻仅有一个线程处于运行状态。因此此时可能有多个线程处于就绪状态。对多个处于就绪状态的线程是由Java运行时系统的线程调度程序(thread scheduler)来调度的。</p>
+</li>
+<li><p>运行状态(Running)</p>
+<p>当线程获得CPU时间后，它才进入运行状态，真正开始执行run()方法.</p>
+</li>
+<li><p>阻塞状态(Blocked)</p>
+<p>线程运行过程中，可能由于各种原因进入阻塞状态:</p>
+<p>1&gt;线程通过调用sleep方法进入睡眠状态；</p>
+<p>2&gt;线程调用一个在I/O上被阻塞的操作，即该操作在输入输出操作完成之前不会返回到它的调用者；</p>
+<p>3&gt;线程试图得到一个锁，而该锁正被其他线程持有；</p>
+<p>4&gt;线程在等待某个触发条件；</p>
+<p>……           </p>
+<p>所谓阻塞状态是正在运行的线程没有运行结束，暂时让出CPU，这时其他处于就绪状态的线程就可以获得CPU时间，进入运行状态。</p>
+</li>
+<li><p>死亡状态(Dead)</p>
+<p>有两个原因会导致线程死亡：</p>
+<p>1) run方法正常退出而自然死亡</p>
+<p>2) 一个未捕获的异常终止了run方法而使线程猝死</p>
+<p>为了确定线程在当前是否存活着（就是要么是可运行的，要么是被阻塞了），需要使用isAlive方法。如果是可运行或被阻塞，这个方法返回true； 如果线程仍旧是new状态且不是可运行的， 或者线程死亡了，则返回false.</p>
+</li>
+</ul>
+</li>
+<li><p>什么是线程调度器(Thread Scheduler)和时间分片(Time Slicing)？<br>线程调度器是一个操作系统服务，它负责为Runnable状态的线程分配CPU时间。一旦我们创建一个线程并启动它，它的执行便依赖于线程调度器的实现。时间分片是指将可用的CPU时间分配给可用的Runnable线程的过程。分配CPU时间可以基于线程优先级或者线程等待的时间。线程调度并不受到Java虚拟机控制，所以由应用程序来控制它是更好的选择（也就是说不要让你的程序依赖于线程的优先级）</p>
+</li>
+<li><p>如何创建守护线程？<br>使用Thread类的setDaemon(true)方法可以将线程设置为守护线程，需要注意的是，需要在调用start()方法前调用这个方法，否则会抛出IllegalThreadStateException异常</p>
+</li>
+<li><p>什么是ThreadLocal?<br>ThreadLocal用于创建线程的本地变量，我们知道一个对象的所有线程会共享它的全局变量，所以这些变量不是线程安全的，我们可以使用同步技术。但是当我们不想使用同步的时候，我们可以选择ThreadLocal变量，当前线程作为key</p>
+</li>
+<li><p>什么是死锁(Deadlock)？如何分析和避免死锁？<br>死锁是指两个以上的线程永远阻塞的情况，这种情况产生至少需要两个以上的线程和两个以上的资源。分析死锁，我们需要查看Java应用程序的线程转储。我们需要找出那些状态为BLOCKED的线程和他们等待的资源。每个资源都有一个唯一的id，用这个id我们可以找出哪些线程已经拥有了它的对象锁。</p>
+<p>避免嵌套锁是指两个或两个以上的进程在执行过程中，由于竞争资源或者由于彼此通信而造成的一种阻塞的现象，比如线程A运行R1资源，线程B运行R2资源，但是A在运行R1时又要去取R2，而B运行时R2时要取资源R1</p>
+</li>
+<li><p>什么是线程池？如何创建一个Java线程池？有几种创建方法<br>一个线程池管理了一组工作线程，同时它还包括了一个用于放置等待执行的任务的队列。<br>java.util.concurrent.Executors提供了一个 java.util.concurrent.Executor接口的实现用于创建线程池</p>
+</li>
+<li><p>什么是阻塞队列？如何使用阻塞队列来实现生产者-消费者模型？<br>java.util.concurrent.BlockingQueue的特性是：当队列是空的时，从队列中获取或删除元素的操作将会被阻塞，或者当队列是满时，往队列里添加元素的操作会被阻塞。<br>阻塞队列不接受空值，当你尝试向队列中添加空值的时候，它会抛出NullPointerException。<br>阻塞队列的实现都是线程安全的，所有的查询方法都是原子的并且使用了内部锁或者其他形式的并发控制。<br>BlockingQueue 接口是java collections框架的一部分，它主要用于实现生产者-消费者问题</p>
+</li>
+<li><p>什么是Callable和Future?<br>Java 5在concurrency包中引入了java.util.concurrent.Callable接口，它和Runnable接口很相似，但它可以返回一个对象或者抛出一个异常。</p>
+<p>Callable接口使用泛型去定义它的返回类型。Executors类提供了一些有用的方法去在线程池中执行Callable内的任务。由于Callable任务是并行的，我们必须等待它返回的结果。java.util.concurrent.Future对象为我们解决了这个问题。在线程池提交Callable任务后返回了一个Future对象，使用它我们可以知道Callable任务的状态和得到Callable返回的执行结果。Future提供了get()方法让我们可以等待Callable结束并获取它的执行结果</p>
+</li>
+<li><p>什么是FutureTask?<br>FutureTask是Future的一个基础实现，我们可以将它同Executors使用处理异步任务。通常我们不需要使用FutureTask类，单当我们打算重写Future接口的一些方法并保持原来基础的实现是，它就变得非常有用。我们可以仅仅继承于它并重写我们需要的方法。阅读Java FutureTask例子，学习如何使用它</p>
+</li>
+<li><p>什么是并发容器的实现？<br>Java集合类都是快速失败的，这就意味着当集合被改变且一个线程在使用迭代器遍历集合的时候，迭代器的next()方法将抛出ConcurrentModificationException异常</p>
+</li>
+<li><p>Executors类是什么？<br>Executors为Executor，ExecutorService，ScheduledExecutorService，ThreadFactory和Callable类提供了一些工具方法</p>
+</li>
+<li><p>Thread.start ()与 Thread.run ()有什么区别？<br>Thread.start ()方法(native)启动线程，使之进入就绪状态，当 cpu 分配时间该线程时，由 JVM 调度执行 run ()方法</p>
+</li>
+<li><p>Java 中多线程同步是什么？<br>在多线程程序下，同步能控制对共享资源的访问。如果没有同步，当一个 Java 线程在修改一个共享变量时，另外一个线程正在使用或者更新同一个变量，这样容易导致程序出现错误的结果</p>
+</li>
+<li><p>volatile关键字在Java中有什么作用？<br>当我们使用volatile关键字去修饰变量的时候，所以线程都会直接读取该变量并且不缓存它。这就确保了线程读取到的变量是同内存中是一致的</p>
+</li>
+<li><p>线程之间是如何通信的？<br>当线程间是可以共享资源时，线程间通信是协调它们的重要的手段。Object类中wait()\notify()\notifyAll()方法可以用于线程间通信关于资源的锁的状态。点击这里有更多关于线程wait, notify和notifyAll</p>
+</li>
+<li><p>什么是线程调度器(Thread Scheduler)和时间分片(Time Slicing)？<br>线程调度器是一个操作系统服务，它负责为Runnable状态的线程分配CPU时间。一旦我们创建一个线程并启动它，它的执行便依赖于线程调度器的实现。时间分片是指将可用的CPU时间分配给可用的Runnable线程的过程。分配CPU时间可以基于线程优先级或者线程等待的时间。线程调度并不受到Java虚拟机控制，所以由应用程序来控制它是更好的选择（也就是说不要让你的程序依赖于线程的优先级）</p>
+</li>
+<li><p>多线程编程的好处是什么？<br>在多线程程序中，多个线程被并发的执行以提高程序的效率，CPU不会因为某个线程需要等待资源而进入空闲状态。多个线程共享堆内存(heap memory)，因此创建多个线程去执行一些任务会比创建多个进程更好</p>
+</li>
+<li><p>你对线程优先级的理解是什么？<br>每一个线程都是有优先级的，一般来说，高优先级的线程在运行时会具有优先权，但这依赖于线程调度的实现，这个实现是和操作系统相关的(OS dependent)。我们可以定义线程的优先级，但是这并不能保证高优先级的线程会在低优先级的线程前执行。线程优先级是一个int变量(从1-10)，1代表最低优先级，10代表最高优先级</p>
+</li>
+<li><p>如何确保线程安全？<br>在Java中可以有很多方法来保证线程安全——同步，使用原子类(atomic concurrent classes)，实现并发锁，使用volatile关键字，使用不变类和线程安全类。</p>
+<ul>
+<li>sychronized</li>
+<li>lock</li>
+<li>原子类</li>
+<li>immutable类</li>
+</ul>
+<p>同步特性：</p>
+<ul>
+<li>可见性</li>
+<li>有序性</li>
+<li>原子性</li>
+</ul>
+</li>
+<li><p>同步方法和同步块，哪个是更好的选择？<br>同步块是更好的选择，因为它不会锁住整个对象（当然你也可以让它锁住整个对象）。同步方法会锁住整个对象，哪怕这个类中有多个不相关联的同步块，这通常会导致他们停止执行并需要等待获得这个对象上的锁</p>
+</li>
+<li><p>Executors<br>newFixedThreadPool。创建固定长度的线程池，每次提交任务创建一个线程，直到达到线程池的最大数量，线程池的大小不再变化。<br>newSingleThreadExecutor。单个线程池。<br>newCachedThreadPool。根据任务规模变动的线程池。<br>newScheduledThreadPool。创建固定长度的线程池，以延迟或定时的方式来执行任务</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">  ExecutorService exec = Executors.newFixedThreadPool(<span class="number">2</span>);</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)</div><div class="line">	  exec.execute(<span class="keyword">new</span> MyThread(i));</div><div class="line">  exec.shutdown();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//----------------------------------------------------</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">  ExecutorService exec = Executors.newSingleThreadExecutor();</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)</div><div class="line">	  exec.execute(<span class="keyword">new</span> MyThread(i));</div><div class="line">  exec.shutdown();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//--------------------------------------------------------</span></div><div class="line"><span class="comment">//ExecutorService executor = Executors.newCachedThreadPool()；</span></div><div class="line">       -----------------------------------------------------------------------------</div><div class="line"><span class="comment">//ExecutorService executor = Executors.newScheduledThreadPool(corePoolSize) ;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>什么是原子操作？在Java Concurrency API中有哪些原子类(atomic classes)？<br>原子操作是指一个不受其他操作影响的操作任务单元。原子操作是在多线程环境下避免数据不一致必须的手段。<br>int++并不是一个原子操作，所以当一个线程读取它的值并加1时，另外一个线程有可能会读到之前的值，这就会引发错误。<br>为了解决这个问题，必须保证增加操作是原子的，在JDK1.5之前我们可以使用同步技术来做到这一点。到JDK1.5，java.util.concurrent.atomic包提供了int和long类型的装类，它们可以自动的保证对于他们的操作是原子的并且不需要使用同步。可以阅读这篇文章来了解Java的atomic类。</p>
+</li>
+<li><p>Java Concurrency API中的Lock接口(Lock interface)是什么？对比同步它有什么优势？<br>Lock接口比同步方法和同步块提供了更具扩展性的锁操作。他们允许更灵活的结构，可以具有完全不同的性质，并且可以支持多个相关类的条件对象。<br>它的优势有：</p>
+<ul>
+<li>可以使锁更公平        </li>
+<li>可以使线程在等待锁的时候响应中断        </li>
+<li>可以让线程尝试获取锁，并在无法获取锁的时候立即返回或者等待一段时间        </li>
+<li>可以在不同的范围，以不同的顺序获取和释放锁        </li>
+</ul>
+</li>
+<li><p>什么是Executors框架？<br>Executor框架同java.util.concurrent.Executor 接口在Java 5中被引入。Executor框架是一个根据一组执行策略调用，调度，执行和控制的异步任务的框架。<br>无限制的创建线程会引起应用程序内存溢出。所以创建一个线程池是个更好的的解决方案，因为可以限制线程的数量并且可以回收再利用这些线程。利用Executors框架可以非常方便的创建一个线程池。</p>
+</li>
+<li><p>什么是FutureTask?<br>FutureTask是Future的一个基础实现，我们可以将它同Executors使用处理异步任务。通常我们不需要使用FutureTask类，但当我们打算重写Future接口的一些方法并保持原来基础的实现是，它就变得非常有用。</p>
+</li>
+<li><p>Java中的fork join框架是什么？<br>fork join框架是JDK7中出现的一款高效的工具，Java开发人员可以通过它充分利用现代服务器上的多处理器。它是专门为了那些可以递归划分成许多子模块设计的，目的是将所有可用的处理能力用来提升程序的性能。fork join框架一个巨大的优势是它使用了工作窃取算法，可以完成更多任务的工作线程可以从其它线程中窃取任务来执行。</p>
+</li>
+<li><p>出3条你遵循的多线程最佳实践</p>
+<ul>
+<li>避免嵌套锁</li>
+<li>缩小锁的范围/时间</li>
+<li>多使用并发集合</li>
+<li>少用wait和notify</li>
+<li>避免使用线程组</li>
+<li>给线程去个有意义的名字</li>
+</ul>
+</li>
+<li><p>为什么要用守护线程？<br>进行内存回收,垃圾清理等工作，监工等</p>
+</li>
+<li><p>死锁</p>
+<p><a href="http://www.cnblogs.com/Jessy/p/3540724.html" target="_blank" rel="external">http://www.cnblogs.com/Jessy/p/3540724.html</a></p>
+</li>
+<li><p>产生死锁的四个必要条件：</p>
+<p>（1）互斥条件：一个资源每次只能被一个进程使用。<br>（2）请求与保持条件：一个进程因请求资源而阻塞时，对已获得的资源保持不放。<br>（3）不剥夺条件:进程已获得的资源，在末使用完之前，不能强行剥夺。<br>（4）循环等待条件:若干进程之间形成一种头尾相接的循环等待资源关系。</p>
+<p>锁的类别有两种分法：  </p>
+<ol>
+<li>从数据库系统的角度来看：分为独占锁（即排它锁），共享锁和更新锁</li>
+</ol>
+</li>
+<li><p>死锁恢复</p>
+<ul>
+<li>最简单，最常用的方法就是进行系统的重新启动，不过这种方法代价很大，它意味着在这之前所有的进程已经完成的<br>计算工作都将付之东流，包括参与死锁的那些进程，以及未参与死锁的进程。</li>
+<li>撤消进程，剥夺资源。终止参与死锁的进程，收回它们占有的资源，从而解除死锁。这时又分两种情况：<br>一次性撤消参与死锁的全部进程，剥夺全部资源；或者逐步撤消参与死锁的进程，逐步收回死锁进程占有的资源。<br>一般来说，选择逐步撤消的进程时要按照一定的原则进行，目的是撤消那些代价最小的进程，比如按进程的优先级确定<br>进程的代价；考虑进程运行时的代价和与此进程相关的外部作业的代价等因素</li>
+</ul>
+</li>
+<li><p>锁优化的思路和方法总结一下，有以下几种  <a href="http://my.oschina.net/hosee/blog/615865" target="_blank" rel="external">http://my.oschina.net/hosee/blog/615865</a> </p>
+<ul>
+<li>减少锁持有时间</li>
+<li>较小锁定的粒度</li>
+<li>所分离</li>
+<li>锁粗化</li>
+<li>锁消除StringBuffer</li>
+</ul>
+</li>
+<li><p>为什么要使用线程池<br>避免频繁地创建和销毁线程，达到线程对象的重用。另外，使用线程池还可以根据项目灵活地控制并发的数目。<br><a href="http://www.roncoo.com/article/detail/126450" target="_blank" rel="external">http://www.roncoo.com/article/detail/126450</a></p>
+</li>
+<li><p>自旋锁的机制</p>
+<ul>
+<li>自旋锁：当进程进入CPU运行时，就会给它的代码上锁，以免别的CPU中的进程修改里面的代码（不排除CPU给别的CPU上锁这样的情况，以后会讨论到。）。所谓子旋锁就是这样的一把锁：进程A进入CPU，锁上门运行，进程B来到CPU前，发现门被锁上了，于是等待进程A出来交出开锁钥匙。</li>
+<li>互斥锁：如果事务T对数据A加上排他锁后，则其他事务不能再对A加任任何类型的锁，直到在事务的末尾将资源上的锁释放为止。获准排他锁的事务既能读数据，又能修改数据。</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面试/" rel="tag"># 面试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/29/聊聊SQL——内查询示例1/" rel="next" title="聊聊SQL——内查询示例1">
+                <i class="fa fa-chevron-left"></i> 聊聊SQL——内查询示例1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/01/聊聊Linux——JDK及MYSQL安装/" rel="prev" title="聊聊Linux——JDK及MYSQL安装">
+                聊聊Linux——JDK及MYSQL安装 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="telinx" />
+          <p class="site-author-name" itemprop="name">telinx</p>
+           
+              <p class="site-description motion-element" itemprop="description">Focus On It</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java基础"><span class="nav-number">1.</span> <span class="nav-text">Java基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程"><span class="nav-number">2.</span> <span class="nav-text">多线程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">telinx</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+
+
+</body>
+</html>

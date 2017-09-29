@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|courier new:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="面试," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Web相关、架构知识面试题整理">
+<meta name="keywords" content="面试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="聊聊Java——java面试（二）">
+<meta property="og:url" content="http://yoursite.com/2017/04/02/聊聊Java——Java面试（二）/index.html">
+<meta property="og:site_name" content="Telinx|Tech">
+<meta property="og:description" content="Web相关、架构知识面试题整理">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-29T14:27:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="聊聊Java——java面试（二）">
+<meta name="twitter:description" content="Web相关、架构知识面试题整理">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/04/02/聊聊Java——Java面试（二）/"/>
+
+
+
+
+
+  <title>聊聊Java——java面试（二） | Telinx|Tech</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Telinx|Tech</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">知识就是力量</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/02/聊聊Java——Java面试（二）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="telinx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Telinx|Tech">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">聊聊Java——java面试（二）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-02T09:54:08+08:00">
+                2017-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/面试/" itemprop="url" rel="index">
+                    <span itemprop="name">面试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Web相关、架构知识面试题整理</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="Web相关"><a href="#Web相关" class="headerlink" title="Web相关"></a>Web相关</h3><ol>
+<li><p>Tomcat的优化经验<br>+线程优化：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">maxThreads=&quot;600&quot;       //最大线程数</div><div class="line">minSpareThreads=&quot;100&quot;  //初始化时创建的线程数</div><div class="line">maxSpareThreads=&quot;500&quot;  //一旦创建的线程超过这个值，Tomcat就会关闭不再需要的socket线程。</div><div class="line">acceptCount=&quot;700&quot;      //指定当所有可以使用的处理请求的线程数都被使用时，可以放到处理队列中的请求数，超过这个数的请求将不予处理</div></pre></td></tr></table></figure>
+<ul>
+<li><p>Apr插件提高Tomcat性能:使用APR来提供超强的可伸缩性和性能，更好地集成本地服务器技术</p>
+</li>
+<li><p>设置session过期时间：</p>
+</li>
+<li><p>禁用DNS查询</p>
+</li>
+<li><p>内存优化：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">JAVA_OPTS=&quot;-XX:PermSize=64M -XX:MaxPermSize=128m -Xms512m -Xmx1024m -Duser.timezone=Asia/Shanghai&quot;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>解释一下什么是servlet;<br>基于Java编程语言的WEB服务器端编程技术</p>
+</li>
+<li><p>SERVLET API中forward()与redirect()的区别？<br>一次转发，一次请求，两次请求，两次转发，资源消耗  </p>
+</li>
+<li><p>jsp有哪些内置对象?作用分别是什么?分别有什么方法？</p>
+<ul>
+<li>request 用户端请求，此请求会包含来自GET/POST请求的参数</li>
+<li>response 网页传回用户端的回应        </li>
+<li>pageContext 网页的属性是在这里管理        </li>
+<li>session 与请求有关的会话期     </li>
+<li>application servlet 正在执行的内容     </li>
+<li>out 用来传送回应的输出     </li>
+<li>config servlet的构架部件     </li>
+<li>page JSP网页本身     </li>
+<li>exception 针对错误网页，未捕捉的例外</li>
+</ul>
+</li>
+<li><p>tomcat服务器的配置文件，<br>   bin    conf     logs     webapps       common</p>
+</li>
+<li><p>怎么优化长SQL</p>
+<p> a)explain Sql，解释执行分析执行效率，主要是查询是否用到索引，索引是SQL优化的重点</p>
+<pre><code>b)exist 代替 in
+c)join 代替 子查询
+d)存储过程
+e) 分库分表
+f) 读写分离
+g)索引使用的问题
+</code></pre><p> ​</p>
+</li>
+</ol>
+<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><ol>
+<li><p>数据库死锁处理方法：</p>
+<ul>
+<li><p>根据2中提供的sql，查看那个spid处于wait状态，然后用kill spid来干掉(即破坏死锁的第四个必要条件:循环等待)；当然这只是一种临时解决方案，我们总不能在遇到死锁就在用户的生产环境上排查死锁、Kill sp，我们应该考虑如何去避免死锁。</p>
+</li>
+<li><p>使用SET LOCK_TIMEOUT timeout_period(单位为毫秒)来设定锁请求超时。默认情况下，数据库没有超时期限(timeout_period值为-1，可以用SELECT @@LOCK_TIMEOUT来查看该值，即无限期等待)。当请求锁超过timeout_period时，将返回错误。timeout_period值为0时表示根本不等待，一遇到锁就返回消息。设置锁请求超时，破环了死锁的第二个必要条件(请求与保持条件)。</p>
+<p>服务器: 消息 1222，级别 16，状态 50，行 1</p>
+<p>已超过了锁请求超时时段。</p>
+</li>
+<li><p>SQL Server内部有一个锁监视器线程执行死锁检查，锁监视器对特定线程启动死锁搜索时，会标识线程正在等待的资源；然后查找特定资源的所有者，并递归地继续执行对那些线程的死锁搜索，直到找到一个构成死锁条件的循环。检测到死锁后，数据库引擎 选择运行回滚开销最小的事务的会话作为死锁牺牲品，返回1205 错误，回滚死锁牺牲品的事务并释放该事务持有的所有锁，使其他线程的事务可以请求资源并继续运行。</p>
+</li>
+</ul>
+</li>
+<li><p>mysql索引的数据结构，加索引的原则<br>where后的条件，order by ,group by 等这样过滤时，后面的字段最好加上索引，联合查询，子查询等多表操作时关连字段要加索引</p>
+</li>
+<li><p>innodb和myisam的区别<br>innodb:保存表空间数据文件和日志文件。支持事物，适合大量增删改，查询比myisam慢。支持行锁表。<br>myisam：保存时保存3个文件，不支持事物，适合执行大量查询，不支持行锁表</p>
+</li>
+<li><p>以及常见的mysql优化方案，<br>1、选取最适用的字段属性<br>2、使用连接（JOIN）来代替子查询（Sub-Queries）<br>3、使用联合（UNION）来代替手动创建的临时表<br>使用索引<br>优化的查询语句</p>
+<pre><code>a: 表的设计合理化(符合3NF)
+b: 添加适当索引(index) [四种: 普通索引、主键索引、唯一索引unique、全文索引]
+c: 分表技术(水平分割、垂直分割)
+d: 读写[写: update/delete/add]分离
+e: 存储过程 [模块化编程，可以提高速度]
+f: 对mysql配置优化 [配置最大并发数my.ini, 调整缓存大小 ]
+g: mysql服务器硬件升级
+h: 定时的去清除不需要的数据,定时进行碎片整理(MyISAM)
+</code></pre></li>
+<li><p>oracle索引种类</p>
+<ol>
+<li><p>单列索引与复合索引</p>
+<p>一个索引可以由一个或多个列组成，用来创建索引的列被称为“索引列”。        </p>
+<p>单列索引是基于单列所创建的索引，复合索引是基于两列或者多列所创建的索引。        </p>
+</li>
+<li><p>唯一索引与非唯一索引        </p>
+<p>唯一索引是索引列值不能重复的索引，非唯一索引是索引列可以重复的索引。        </p>
+<p>无论是唯一索引还是非唯一索引，索引列都允许取NULL值。默认情况下，Oracle创建的索引是不唯一索引。        </p>
+</li>
+<li><p>B树索引        </p>
+<p>B树索引是按B树算法组织并存放索引数据的，所以B树索引主要依赖其组织并存放索引数据的算法来实现快速检索功能。        </p>
+</li>
+<li><p>位图索引        </p>
+<p>位图索引在多列查询时，可以对两个列上的位图进行AND和OR操作，达到更好的查询效果。        </p>
+</li>
+<li><p>函数索引        </p>
+<p>Oracle中不仅能够直接对表中的列创建索引，还可以对包含列的函数或表达式创建索引，这种索引称为“位图索引”</p>
+</li>
+</ol>
+</li>
+<li><p>Oracle和mysql中对分页的sql处理区别，可任选一种写出例子</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> a <span class="keyword">limit</span> <span class="number">0</span>, <span class="number">10</span>;</div><div class="line"><span class="comment">------------------------------------------------</span></div><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span>   </div><div class="line">	   (<span class="keyword">SELECT</span> A.*, <span class="keyword">ROWNUM</span> RN <span class="keyword">FROM</span> A)          </div><div class="line"><span class="keyword">WHERE</span> RN <span class="keyword">BETWEEN</span> <span class="number">21</span> <span class="keyword">AND</span> <span class="number">40</span> ;</div><div class="line"><span class="comment">-------------------------------------------------</span></div><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span>   </div><div class="line">	   (<span class="keyword">SELECT</span> A.*, <span class="keyword">ROWNUM</span> RN <span class="keyword">FROM</span> (<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> TABLE_NAME) A <span class="keyword">WHERE</span> <span class="keyword">ROWNUM</span> &lt;= <span class="number">40</span>)          </div><div class="line"><span class="keyword">WHERE</span> RN &gt;= <span class="number">21</span>;</div></pre></td></tr></table></figure>
+</li>
+<li><p>数据库三范式是什么<br>第一范式：每一列都是不可分割<br>第二范式：属性完全依赖于主键，满足第一范式<br>第三范式：非主关键字信息仅存一表，满足第二范式</p>
+</li>
+<li><p>union和union all有什么不同?</p>
+<p>Union，对两个结果集进行并集操作，不包括重复行，同时进行默认规则的排序；<br>Union All，对两个结果集进行并集操作，包括重复行，不进行排序；</p>
+</li>
+<li><p>SQL分哪几类？</p>
+<p>DDL，DML，DCL</p>
+</li>
+<li><p>数据库事务<br>原子性。即不可分割性，事务要么全部被执行，要么就全部不被执行。<br>一致性。事务的执行使得数据库从一种正确状态转换成另一种正确状态<br>隔离性。在事务正确提交之前，不允许把该事务对数据的任何改变提供给任何其他事务，<br>持久性。事务正确提交后，其结果将永久保存在数据库中，即使在事务提交后有了其他故障，事务的处理结果也会得到保存。</p>
+</li>
+<li><p>死锁及处理：事务循环等待数据锁，则会死锁。<br>死锁处理：预防死锁协议，死锁恢复机制</p>
+</li>
+<li><p>数据库SQL练习<br>查看笔记SQL练习</p>
+</li>
+<li><p>Mysql索引的分类<br>普通索引<br>唯一索引<br>主键（特殊的唯一索引）<br>复合索引</p>
+</li>
+<li><p>索引添加规则<br>索引查询是数据库中重要的记录查询方法，要不要进入索引以及在那些字段上建立索引都要和实际数据库系统的查询要求结合来考虑，下面给出实际中的一些通用的原则：</p>
+<ol>
+<li>在经常用作过滤器的字段上建立索引；</li>
+<li>在SQL语句中经常进行GROUP BY、ORDER BY的字段上建立索引；</li>
+<li>在不同值较少的字段上不必要建立索引，如性别字段；</li>
+<li>对于经常存取的列避免建立索引；</li>
+<li>用于联接的列（主健/外健）上建立索引；</li>
+<li>在经常存取的多个列上建立复合索引，但要注意复合索引的建立顺序要按照使用的频度来确定；</li>
+<li>缺省情况下建立的是非簇集索引，但在以下情况下最好考虑簇集索引，如：含有有限数目（不是很少）唯一的列；进行大范围的查询；充分的利用索引可以减少表扫描I/0的次数，有效的避免对整表的搜索。当然合理的索引要建立在对各种查询的分析和预测中，也取决于DBA的所设计的数据库结构。     </li>
+</ol>
+</li>
+<li><p>悲观锁，乐观锁（可查数据库笔记）<br>悲观锁：自己拿着锁，别人不能动</p>
+<pre><code>悲观锁(Pessimistic Lock), 顾名思义，就是很悲观，每次去拿数据的时候都认为别人也会修改，所以每次在拿数据的时候都会上锁，这样别人想拿这个数据就会block直到它拿到锁。传统的关系型数据库里边就用到了很多这种锁机制，比如行锁，表锁等，读锁，写锁等，都是在做操作之前先上锁。
+</code></pre><p>乐观锁：</p>
+<pre><code>乐观锁(Optimistic Lock), 顾名思义，就是很乐观，每次去拿数据的时候都认为别人不会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据，可以使用版本号等机制。乐观锁适用于多读的应用类型，这样可以提高吞吐量，像数据库如果提供类似于write_condition机制的其实都是提供的乐观锁。
+</code></pre></li>
+<li><p>数据库中的事务是什么?<br>事务（transaction）是作为一个单元的一组有序的数据库操作。如果组中的所有操作都成功，则认为事务成功，即使只有一个操作失败，事务也不成功。如果所有操作完成，事务则提交，其修改将作用于所有其他数据库进程。如果一个操作失败，则事务将回滚，该事务所有操作的影响都将取消。</p>
+</li>
+<li><p>优化MYSQL数据库的方法。<br>1、选择合适的字段的数据类型</p>
+<pre><code>1)能用数字不用字符串
+2)char、varchar、text  能用varchar不用char
+3）给字段加not null 避免在表中出现NULL关键字(default值)
+</code></pre><p>2、选择合适的字段充当主键</p>
+<pre><code>1)建议每张表必须有主键
+2)用数字类型的字段充当主键
+</code></pre><p>3、拆分表</p>
+<pre><code>1）拆分字段，将文章的标题与内容分开
+2）拆分记录，将今年的记录与往年的记录分开
+</code></pre><p>4、给字段合理添加索引</p>
+<pre><code>a.格式:
+普通索引)-&gt;
+创建:CREATE INDEX &lt;索引名&gt; ON tablename (索引字段)
+修改:ALTER TABLE tablename ADD INDEX [索引名] (索引字段)
+创表指定索引:CREATE TABLE tablename([...],INDEX[索引名](索引字段)
+
+(唯一索引)-&gt;
+创建:CREATE UNIQUE &lt;索引名&gt; ON tablename (索引字段)
+修改:ALTER TABLE tablename ADD UNIQUE [索引名] (索引字段)
+创表指定索引:CREATE TABLE tablename([...],UNIQUE[索引名](索引字段)
+(主键)-&gt;
+它是唯一索引,一般在创建表是建立,格式为:
+CREATA TABLE tablename ([...],PRIMARY KEY[索引字段])
+</code></pre><p>5、事务处理:</p>
+<pre><code>a.保证数据完整性,例如添加和修改同时,两者成立则都执行,一者失败都失败
+mysql_query(&quot;BEGIN&quot;);
+mysql_query(&quot;INSERT INTO customerinfo (name) VALUES (&apos;$name1&apos;)&quot;;
+mysql_query(&quot;SELECT * FROM `orderinfo` where customerid=&quot;.$id&quot;);
+mysql_query(&quot;COMMIT&quot;);
+</code></pre><p>6、锁定表,优化事务处理:</p>
+<pre><code>a.我们用一个 SELECT 语句取出初始数据，通过一些计算，用 UPDATE 语句将新值更新到表中。
+包含有 WRITE 关键字的 LOCK TABLE 语句可以保证在UNLOCK TABLES 命令被执行之前，
+不会有其它的访问来对 inventory 进行插入、更新或者删除的操作
+mysql_query(&quot;LOCK TABLE customerinfo READ, orderinfo WRITE&quot;);
+mysql_query(&quot;SELECT customerid FROM `customerinfo` where id=&quot;.$id);
+mysql_query(&quot;UPDATE `orderinfo` SET ordertitle=&apos;$title&apos; where
+customerid=&quot;.$id);
+mysql_query(&quot;UNLOCK TABLES&quot;);
+</code></pre><p>7、使用外键,优化锁定表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">a.把customerinfo里的customerid映射到orderinfo里的customerid,</div><div class="line">任何一条没有合法的customerid的记录不会写到orderinfo里</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> customerinfo(</div><div class="line">    customerid <span class="built_in">INT</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">    PRIMARY <span class="keyword">KEY</span>(customerid) </div><div class="line">)<span class="keyword">TYPE</span> = <span class="keyword">INNODB</span>;</div><div class="line">   </div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> orderinfo(</div><div class="line">    orderid <span class="built_in">INT</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">    customerid <span class="built_in">INT</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">    PRIMARY <span class="keyword">KEY</span>(customerid,orderid),</div><div class="line">    FOREIGN <span class="keyword">KEY</span> (customerid) <span class="keyword">REFERENCES</span> customerinfo(customerid) <span class="keyword">ON</span> <span class="keyword">DELETE</span> <span class="keyword">CASCADE</span>  </div><div class="line">)<span class="keyword">TYPE</span> = <span class="keyword">INNODB</span>;</div><div class="line">注意:'ON <span class="keyword">DELETE</span> <span class="keyword">CASCADE</span><span class="string">',该参数保证当customerinfo表中的一条记录删除的话同时也会删除order</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">表中的该用户的所有记录,注意使用外键要定义事务安全类型为INNODB;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>优化查询语句</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">用内连接代替子查询代替子查询，用sphinx代替like模糊查询</div><div class="line">最好在相同字段进行比较操作,在建立好的索引字段上尽量减少函数操作</div><div class="line">  例子1:</div><div class="line">    <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">order</span> <span class="keyword">WHERE</span> <span class="keyword">YEAR</span>(orderDate)&lt;<span class="number">2008</span>;(慢)</div><div class="line">    <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">order</span> <span class="keyword">WHERE</span> orderDate&lt;<span class="string">"2008-01-01"</span>;(快)</div><div class="line">  例子2:</div><div class="line">    <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">order</span> <span class="keyword">WHERE</span> <span class="keyword">addtime</span>/<span class="number">7</span>&lt;<span class="number">24</span>;(慢)</div><div class="line">    <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">order</span> <span class="keyword">WHERE</span> <span class="keyword">addtime</span>&lt;<span class="number">24</span>*<span class="number">7</span>;(快)</div><div class="line">  例子3:</div><div class="line">    <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">order</span> <span class="keyword">WHERE</span> title <span class="keyword">like</span> <span class="string">"%good%"</span>;</div><div class="line">    <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">order</span> <span class="keyword">WHERE</span> title&gt;=<span class="string">"good"</span> <span class="keyword">and</span> <span class="keyword">name</span>&lt;<span class="string">"good"</span>;</div><div class="line">9、缓存，静态化</div><div class="line">10、选择合适存储引擎用Innodb增删改，用myisam查询</div><div class="line">11、主从数据库</div><div class="line">12、负载均衡</div><div class="line">13、最好拿数字类型的字段充当where条件</div><div class="line">14、最好拿相同类型的字段进行比对(避免发生数据类型的转换)</div><div class="line">15、不要在具有索引的字段上添加数据库函数(索引失效)</div></pre></td></tr></table></figure>
+</li>
+<li><p>请简述项目中优化sql语句执行效率的方法,从哪些方面,sql语句性能如何分析?<br>（1）选择最有效率的表名顺序<br>（2）WHERE子句中的连接顺序<br>（3）SELECT子句中避免使用‘*’<br>（4）用Where子句替换HAVING子句<br>（5）通过内部函数提高SQL效率<br>（6）避免在索引列上使用计算。<br>（7）提高GROUP BY 语句的效率, 可以通过将不需要的记录在GROUP BY 之前过滤掉。</p>
+</li>
+</ol>
+<h3 id="架构知识"><a href="#架构知识" class="headerlink" title="架构知识"></a>架构知识</h3><ol>
+<li><p>spring的事务原理<br>Spring事务的本质其实就是数据库对事务的支持，没有数据库的事务支持，spring是无法提供事务功能的。<br>分为:     </p>
+<ul>
+<li>声明式跟编程式。声明式就是在Spring的配置文件中进行相关配置；     </li>
+<li>编程式就是用注解的方式写到代码里。下面先说声明式</li>
+</ul>
+<p>Spring配置文件中关于事务配置总是由三个组成部分，分别是DataSource、TransactionManager和代理机制这三部分，无论哪种配置方式，一般变化的只是代理机制这部分。 DataSource、 TransactionManager这两部分只是会根据数据访问方式有所变化，比如使用Hibernate进行数据访问时，DataSource实际为 SessionFactory，TransactionManager的实现为HibernateTransactionManager。</p>
+<p>​</p>
+</li>
+<li><p>介绍一下spring<br>Spring 是个java企业级应用的开源开发框架。Spring主要用来开发Java应用，但是有些扩展是针对构建J2EE平台的web应用。Spring 框架目标是简化Java企业级应用开发，并通过POJO为基础的编程模型促进良好的编程习惯。</p>
+<p>​</p>
+</li>
+<li><p>springMVC的原理</p>
+</li>
+<li><p>spring的优缺点<br>优点<br>轻量：Spring 是轻量的，基本的版本大约2MB。<br>控制反转：Spring通过控制反转实现了松散耦合，对象们给出它们的依赖，而不是创建或查找依赖的对象们。<br>面向切面的编程(AOP)：Spring支持面向切面的编程，并且把应用业务逻辑和系统服务分开。<br>容器：Spring 包含并管理应用中对象的生命周期和配置。<br>MVC框架：Spring的WEB框架是个精心设计的框架，是Web框架的一个很好的替代品。<br>事务管理：Spring 提供一个持续的事务管理接口，可以扩展到上至本地事务下至全局事务（JTA）。<br>异常处理：Spring 提供方便的API把具体技术相关的异常（比如由JDBC，Hibernate or JDO抛出的）转化为一致的unchecked 异常。<br>缺点：<br>1、配置文件太多，<br>2、后期的bug对应阶段，不容易判断问题所在。<br>3.挺臃肿的</p>
+</li>
+<li><p>ibatis与Mybatis区别，Mybatis与Herbernate区别<br>ibatis与Mybatis没区别，ORM与半ORM</p>
+</li>
+<li><p>什么是ORM<br>对象关系映射，数据库字段与类的属性形成映射关系</p>
+</li>
+<li><p>spring运行的原理</p>
+<ul>
+<li><p>IoC：<br>概念：控制权由对象本身转向容器；由容器根据配置文件去创建实例并创建各个实例之间的依赖关系     核心：bean工厂；在Spring中，bean工厂创建的各个实例称作bean      </p>
+</li>
+<li><p>AOP(Aspect-Oriented Programming): 面向方面编程<br>代理的两种方式：<br>  静态代理：      </p>
+<ul>
+<li>针对每个具体类分别编写代理类；      </li>
+<li><p>针对一个接口编写一个代理类；      </p>
+<p>动态代理：      </p>
+</li>
+<li><p>针对一个方面编写一个InvocationHandler，然后借用JDK反射包中的Proxy类为各种接口动态生成相应的代理类     </p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>现在为什么很多开发者选择SpringMVC？SpringMVC比Struts 2好吗？<br>1.机制：spring mvc的入口是servlet，而struts2是filter（这里要指出，filter和servlet是不同的。<br> 2.性能：spring会稍微比struts快。spring mvc是基于方法的设计，而sturts是基于类。<br> 3.参数传递：struts是在接受参数的时候，可以用属性来接受参数，这就说明参数是让多个方法共享的。<br> 4.设计思想上：struts更加符合oop的编程思想， spring就比较谨慎，在servlet上扩展。<br> 5.intercepter的实现机制：struts有以自己的interceptor机制，spring mvc用的是独立的AOP方式。<br> 6.另外，spring mvc的验证也是一个亮点，支持JSR303，处理ajax的请求更是方便，只需一个注解@ResponseBody ，然后直接返回响应文本即可。<br> 7.struts2采用的传统的配置文件的方式，并没有使用传说中的0配置；spring mvc可以认为已经</p>
+</li>
+<li><p>有哪些不同类型的IOC（依赖注入）方式？<br>构造器依赖注入：构造器依赖注入通过容器触发一个类的构造器来实现的，该类有一系列参数，每个参数代表一个对其他类的依赖。<br>Setter方法注入：Setter方法注入是容器通过调用无参构造器或无参static工厂 方法实例化bean之后，调用该bean的setter方法，即实现了基于setter的依赖注入。<br>10.什么是Spring beans?<br>Spring beans 是那些形成Spring应用的主干的java对象。它们被Spring IOC容器初始化，装配，和管理。这些beans通过容器中配置的元数据创建</p>
+</li>
+<li><p>解释Spring支持的几种bean的作用域。<br>Spring框架支持以下五种bean的作用域：<br>singleton : bean在每个Spring ioc 容器中只有一个实例。<br>prototype：一个bean的定义可以有多个实例。<br>request：每次http请求都会创建一个bean，该作用域仅在基于web的Spring ApplicationContext情形下有效。<br>session：在一个HTTP Session中，一个bean定义对应一个实例。该作用域仅在基于web的Spring ApplicationContext情形下有效。<br>global-session：在一个全局的HTTP Session中，一个bean定义对应一个实例。该作用域仅在基于web的Spring ApplicationContext情形下有效。</p>
+</li>
+<li><p>Spring框架中的单例bean是线程安全的吗?<br>不安全，Spring框架中的单例bean不是线程安全的。</p>
+</li>
+<li><p>什么是bean装配?<br>装配，或bean 装配是指在Spring 容器中把bean组装到一起，前提是容器需要知道bean的依赖关系，如何通过依赖注入来把它们装配到一起。</p>
+</li>
+<li><p>解释不同方式的自动装配 。<br>有五种自动装配的方式，可以用来指导Spring容器用自动装配方式来进行依赖注入。<br>no：默认的方式是不进行自动装配，通过显式设置ref 属性来进行装配。<br>byName：通过参数名 自动装配，Spring容器在配置文件中发现bean的autowire属性被设置成byname，之后容器试图匹配、装配和该bean的属性具有相同名字的bean。<br>byType:：通过参数类型自动装配，Spring容器在配置文件中发现bean的autowire属性被设置成byType，之后容器试图匹配、装配和该bean的属性具有相同类型的bean。如果有多个bean符合条件，则抛出错误。<br>constructor：这个方式类似于byType， 但是要提供给构造器参数，如果没有确定的带参数的构造器参数类型，将会抛出异常。<br>autodetect：首先尝试使用constructor来自动装配，如果无法工作，则使用byType方式。</p>
+</li>
+<li><p>解释AOP<br>面向切面的编程，或AOP， 是一种编程技术，允许程序模块化横向切割关注点，或横切典型的责任划分，如日志和事务管理。运行时，动态的添加功能。</p>
+</li>
+<li><p>什么是Spring MVC框架的控制器？<br>控制器提供一个访问应用程序的行为，此行为通常通过服务接口实现。控制器解析用户输入并将其转换为一个由视图呈现给用户的模型。Spring用一个非常抽象的方式实现了一个控制层，允许用户创建多种用途的控制器。</p>
+</li>
+<li><p>请解释Spring Bean的生命周期<br>初始化之后调用的回调方法。<br>销毁之前调用的回调方法。<br>Spring框架提供了以下四种方式来管理bean的生命周期事件：<br>InitializingBean和DisposableBean回调接口<br>针对特殊行为的其他Aware接口<br>Bean配置文件中的Custom init()方法和destroy()方法<br>@PostConstruct和@PreDestroy注解方式</p>
+</li>
+<li><p>Spring 框架中都用到了哪些设计模式？</p>
+<ul>
+<li>代理模式—在AOP和remoting中被用的比较多。</li>
+<li>单例模式—在spring配置文件中定义的bean默认为单例模式。</li>
+<li>模板方法—用来解决代码重复的问题。<br>比如. RestTemplate, JmsTemplate, JpaTemplate。<br> 前端控制器—Srping提供了DispatcherServlet来对请求进行分发。<br> 视图帮助(View Helper )—Spring提供了一系列的JSP标签，高效宏来辅助将分散的代码整合在视图里。<br> 依赖注入—贯穿于BeanFactory / ApplicationContext接口的核心理念。<br> 工厂模式—BeanFactory用来创建对象的实例。</li>
+</ul>
+</li>
+<li><p>FileSystemResource和ClassPathResource有何区别？<br>在FileSystemResource 中需要给出spring-config.xml文件在你项目中的相对路径或者绝对路径。在ClassPathResource中spring会在ClassPath中自动搜寻配置文件，所以要把ClassPathResource 文件放在ClassPath下。<br>如果将spring-config.xml保存在了src文件夹下的话，只需给出配置文件的名称即可，因为src文件夹是默认。<br>简而言之，ClassPathResource在环境变量中读取配置文件，FileSystemResource在配置文件中读取配置文件。</p>
+</li>
+<li><p>为什么喜欢使用spring<br>喜欢<br>1.轻量级<br>2.易扩展兼容<br>3.控制反转，AOP，事务的控制，<br>不喜欢：     </p>
+</li>
+</ol>
+<ol>
+<li><p>zookeeper在Dubbo中扮演了一个什么角色，起到了什么作用<br>Zookeeper一个分布式的服务框架，生产者发布注册提供自身信息，消费者订阅注册获取信息。<br>是树型的目录服务的数据存储，<br>能做到集群管理数据 ，这里能很好的作为Dubbo服务的注册中心，<br>Dubbo能与Zookeeper做到集群部署，当提供者出现断电等异常停机时，<br>Zookeeper注册中心能自动删除提供者信息，当提供者重启时，能自动恢复注册数据，以及订阅请求。</p>
+</li>
+<li><p>架构描述<br>Dubbo：透明化远程调用可实现负载均衡容错机制的开发架构<br>实现：集群容错/负载均衡/多协议/异步调用/参数调用等等功能<br>Zookeeper:分布式的，开放源码的分布式应用程序协调服务</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面试/" rel="tag"># 面试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/01/聊聊Linux——JDK及MYSQL安装/" rel="next" title="聊聊Linux——JDK及MYSQL安装">
+                <i class="fa fa-chevron-left"></i> 聊聊Linux——JDK及MYSQL安装
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/02/聊聊Linux——Zookeeper安装/" rel="prev" title="聊聊Linux——Zookeeper安装">
+                聊聊Linux——Zookeeper安装 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="telinx" />
+          <p class="site-author-name" itemprop="name">telinx</p>
+           
+              <p class="site-description motion-element" itemprop="description">Focus On It</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Web相关"><span class="nav-number">1.</span> <span class="nav-text">Web相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库"><span class="nav-number">2.</span> <span class="nav-text">数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#架构知识"><span class="nav-number">3.</span> <span class="nav-text">架构知识</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">telinx</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+
+
+</body>
+</html>
