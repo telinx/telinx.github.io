@@ -84,7 +84,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="数据库,SQL," />
 
 
 
@@ -100,16 +100,18 @@
 
 
 
-<meta name="description" content="Focus On It">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Telinx|Tech">
-<meta property="og:url" content="http://yoursite.com/categories/Java基础/page/2/index.html">
+<meta name="description" content="本问主要介绍如何写出高效的SQL，这样是从无经验开发中向高级必须经由之路。这里总结了一些高质量的sql语句的写法。">
+<meta name="keywords" content="数据库,SQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="聊聊Mysql——如何写出高效的SQL">
+<meta property="og:url" content="http://yoursite.com/2017/05/04/聊聊Mysql——如何写出高效的SQL/index.html">
 <meta property="og:site_name" content="Telinx|Tech">
-<meta property="og:description" content="Focus On It">
+<meta property="og:description" content="本问主要介绍如何写出高效的SQL，这样是从无经验开发中向高级必须经由之路。这里总结了一些高质量的sql语句的写法。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-17T14:37:47.830Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Telinx|Tech">
-<meta name="twitter:description" content="Focus On It">
+<meta name="twitter:title" content="聊聊Mysql——如何写出高效的SQL">
+<meta name="twitter:description" content="本问主要介绍如何写出高效的SQL，这样是从无经验开发中向高级必须经由之路。这里总结了一些高质量的sql语句的写法。">
 
 
 
@@ -138,13 +140,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/Java基础/page/2/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/05/04/聊聊Mysql——如何写出高效的SQL/"/>
 
 
 
 
 
-  <title>分类: Java基础 | Telinx|Tech</title>
+  <title>聊聊Mysql——如何写出高效的SQL | Telinx|Tech</title>
   
 
 
@@ -169,7 +171,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -307,59 +309,186 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Java基础<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/04/聊聊Mysql——如何写出高效的SQL/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="telinx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Telinx|Tech">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2017/01/03/聊聊Java——Class/" itemprop="url">
-              
-                <span itemprop="name">聊聊Java——反射的基石Class类</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">聊聊Mysql——如何写出高效的SQL</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-01-03T21:54:08+08:00"
-              content="2017-01-03" >
-          01-03
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-04T20:14:08+08:00">
+                2017-05-04
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本问主要介绍如何写出高效的SQL，这样是从无经验开发中向高级必须经由之路。这里总结了一些高质量的sql语句的写法。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="尽量避免在列上运算"><a href="#尽量避免在列上运算" class="headerlink" title="尽量避免在列上运算"></a>尽量避免在列上运算</h3><p><strong>日期运算</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">优化前：</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">system_user</span> <span class="keyword">where</span> <span class="built_in">date</span>(createtime) &gt;= <span class="string">'2015-06-01'</span>;</div><div class="line">优化后：</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">system_user</span> <span class="keyword">where</span> createtime &gt;= <span class="string">'2015-06-01 00:00:00'</span>;</div></pre></td></tr></table></figure>
+<p><strong>加，减，乘，除</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">优化前：</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">system_user</span> <span class="keyword">where</span> age + <span class="number">10</span> &gt;= <span class="number">20</span></div><div class="line">优化后：</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">system_user</span> <span class="keyword">where</span> age &gt;= <span class="number">10</span></div></pre></td></tr></table></figure>
+<h3 id="用整型设计索引"><a href="#用整型设计索引" class="headerlink" title="用整型设计索引"></a>用整型设计索引</h3><p>用整型设计的索引，占用的字节少，相对与字符串索引要快的多。特别是创建主键索引和唯一索引的时候。 1）设计日期时候，建议用int取代char(8)。例如整型：20150603。 2）设计IP时候可以用bigint把IP转化为长整型存储。</p>
+<h3 id="join时，使用小结果集驱动大结果集"><a href="#join时，使用小结果集驱动大结果集" class="headerlink" title="join时，使用小结果集驱动大结果集"></a>join时，使用小结果集驱动大结果集</h3><p>使用join的时候，应该尽量让小结果集驱动大的结果集，把复杂的join查询拆分成多个query。因为join多个表的时候，可能会有表的锁定和阻塞。如果大结果集非常大，而且被锁了，那么这个语句会一直等待。这个也是新手常犯的一个错误！</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">优化前：</div><div class="line"><span class="keyword">select</span></div><div class="line">    *</div><div class="line"><span class="keyword">from</span> table_a a</div><div class="line"><span class="keyword">left</span> <span class="keyword">join</span> table_b b <span class="keyword">on</span> a.id = b.id</div><div class="line"><span class="keyword">left</span> <span class="keyword">join</span> table_c c <span class="keyword">on</span> a.id = c.id</div><div class="line"><span class="keyword">where</span> a.id &gt; <span class="number">100</span> <span class="keyword">and</span> b.id &lt; <span class="number">200</span>;</div><div class="line">    </div><div class="line">优化后：</div><div class="line"><span class="keyword">select</span></div><div class="line">    *</div><div class="line"><span class="keyword">from</span> (<span class="keyword">select</span> * <span class="keyword">from</span> table_a <span class="keyword">where</span> <span class="keyword">id</span> &gt; <span class="number">100</span>) a</div><div class="line"><span class="keyword">left</span> <span class="keyword">join</span>(<span class="keyword">select</span> * <span class="keyword">from</span> table_b <span class="keyword">where</span> <span class="keyword">id</span> &lt; <span class="number">200</span>)b <span class="keyword">on</span> a.id = b.id</div><div class="line"><span class="keyword">left</span> <span class="keyword">join</span> table_c <span class="keyword">on</span> a.id = c.id;</div></pre></td></tr></table></figure>
+<h3 id="仅列出需要查询的字段"><a href="#仅列出需要查询的字段" class="headerlink" title="仅列出需要查询的字段"></a>仅列出需要查询的字段</h3><p>仅列出需要查询的字段，新手一般都查询的时候都是*，其实这样不好。这对速度不会有明显的影响，主要考虑的是节省内存。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">优化前：</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">system_user</span> <span class="keyword">where</span> age &gt; <span class="number">10</span></div><div class="line">优化后：</div><div class="line"><span class="keyword">select</span> username,email <span class="keyword">from</span> <span class="keyword">system_user</span> <span class="keyword">where</span> age &gt; <span class="number">10</span></div></pre></td></tr></table></figure>
+<h3 id="使用批量插入节省交互"><a href="#使用批量插入节省交互" class="headerlink" title="使用批量插入节省交互"></a>使用批量插入节省交互</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">优化前：</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">system_user</span>(username,passwd) <span class="keyword">values</span>(<span class="string">'test1'</span>,<span class="string">'123456'</span>)</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">system_user</span>(username,passwd) <span class="keyword">values</span>(<span class="string">'test2'</span>,<span class="string">'123456'</span>)</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">system_user</span>(username,passwd) <span class="keyword">values</span>(<span class="string">'test3'</span>,<span class="string">'123456'</span>)</div><div class="line">优化后：</div><div class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">system_user</span>(username,passwd) <span class="keyword">values</span>(<span class="string">'test1'</span>,<span class="string">'123456'</span>),(<span class="string">'test2'</span>,<span class="string">'123456'</span>),(<span class="string">'test3'</span>,<span class="string">'123456'</span>)</div></pre></td></tr></table></figure>
+<h3 id="多习惯使用explain分析sql语句"><a href="#多习惯使用explain分析sql语句" class="headerlink" title="多习惯使用explain分析sql语句"></a>多习惯使用explain分析sql语句</h3><p>请查看另一篇关于explain文章</p>
+<h3 id="多使用profiling分析sql语句时间开销"><a href="#多使用profiling分析sql语句时间开销" class="headerlink" title="多使用profiling分析sql语句时间开销"></a>多使用profiling分析sql语句时间开销</h3><p>未完待续</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据库/" rel="tag"># 数据库</a>
+          
+            <a href="/tags/SQL/" rel="tag"># SQL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/25/聊聊数据库——联表删除/" rel="next" title="聊聊数据库——联表删除">
+                <i class="fa fa-chevron-left"></i> 聊聊数据库——联表删除
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/categories/Java基础/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/categories/Java基础/">1</a><span class="page-number current">2</span>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -367,6 +496,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -387,8 +520,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -450,6 +592,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#尽量避免在列上运算"><span class="nav-number">1.</span> <span class="nav-text">尽量避免在列上运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用整型设计索引"><span class="nav-number">2.</span> <span class="nav-text">用整型设计索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#join时，使用小结果集驱动大结果集"><span class="nav-number">3.</span> <span class="nav-text">join时，使用小结果集驱动大结果集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#仅列出需要查询的字段"><span class="nav-number">4.</span> <span class="nav-text">仅列出需要查询的字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用批量插入节省交互"><span class="nav-number">5.</span> <span class="nav-text">使用批量插入节省交互</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多习惯使用explain分析sql语句"><span class="nav-number">6.</span> <span class="nav-text">多习惯使用explain分析sql语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多使用profiling分析sql语句时间开销"><span class="nav-number">7.</span> <span class="nav-text">多使用profiling分析sql语句时间开销</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -570,10 +728,10 @@
 
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
